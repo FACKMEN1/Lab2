@@ -20,9 +20,23 @@ namespace Lab2
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static List<Data> excelData;
+        private static int range = 20;
         public MainWindow()
         {
+            LoadData(range);
             InitializeComponent();
+
+            
+            ExcelData.ItemsSource = excelData;
+        }
+        private static async void LoadData(int count)
+        {
+            excelData = await ExcelWorker.LoadFile(count, range -1);
+        }
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
         }
     }
 }

@@ -7,6 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <DataGrid x:Name="ExcelData" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="DataGrid_SelectionChanged" Margin="0,0,0,94"/>
+        <Button x:Name="Add_btn" Content="Добавить запись" HorizontalAlignment="Left" Margin="35,375,0,0" VerticalAlignment="Top" Height="38" Width="128"/>
+        <Button x:Name="Delete_btn" Content="Удалить запись" HorizontalAlignment="Left" Margin="208,375,0,0" VerticalAlignment="Top" Height="38" Width="128"/>
+        <TextBox x:Name="RecordCount" HorizontalAlignment="Left" Margin="525,363,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+
     </Grid>
 </Window>
