@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,22 +22,32 @@ namespace Lab2
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static List<Data> excelData;
+        private static ObservableCollection<Data> excelData;
         private static int range = 20;
         public MainWindow()
         {
             LoadData(range);
-            InitializeComponent();
-
+            InitializeComponent();  
             
             ExcelData.ItemsSource = excelData;
+            
+            
         }
-        private static async void LoadData(int count)
+        private static void LoadData(int count)
         {
-            excelData = await ExcelWorker.LoadFile(count, range -1);
+            excelData = ExcelWorker.LoadFile(count, range -1);
+            
+
         }
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
+        }
+
+        private void Add_btn_Click(object sender, RoutedEventArgs e)
+        {
+            
+            ExcelData.Items.Refresh();
             
         }
     }

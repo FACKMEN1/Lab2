@@ -37,5 +37,10 @@ namespace Lab2
             ChangeDate = changeDate;
         }
 
+        public Data(int id)
+        {
+            Id = id;
+        }
+
     }
 }

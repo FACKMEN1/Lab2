@@ -1,6 +1,7 @@
 ﻿using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -11,16 +12,17 @@ namespace Lab2
 {
     internal class ExcelWorker
     {
-        private static FileInfo filePath = new FileInfo($"../../thrlist.xlsx");
+        private static string filePath = $"../../thrlist.xlsx";
         private static List<Data> data = new List<Data>();
         public List<Data> Data { get { return data; } }
-        public static async Task<List<Data>> LoadFile(int count, int range)
+        public static ObservableCollection<Data> LoadFile(int count, int range)
         {
-            List<Data> list = new List<Data>();
+            ObservableCollection<Data> list = new ObservableCollection<Data>();
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
             var package = new ExcelPackage(filePath);
-            await package.LoadAsync(filePath);
+            //await package.LoadAsync(filePath);
+            package.Load(new FileStream(filePath, FileMode.Open));
             var ws = package.Workbook.Worksheets[0];
             int row = count - range + 2;
             int col = 1;
