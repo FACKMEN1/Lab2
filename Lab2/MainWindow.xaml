@@ -5,15 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab2"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Why we still here" Height="465" Width="937" WindowStartupLocation="CenterScreen">
     <Grid>
-        <DataGrid x:Name="ExcelData" SelectionChanged="DataGrid_SelectionChanged" Margin="0,0,0,94" AutoGenerateColumns="True">
-           
+        <DataGrid x:Name="ExcelData" SelectionChanged="DataGrid_SelectionChanged" Margin="0,0,0,94" AutoGenerateColumns="False"
+                  ItemsSource="{Binding Threats}" SelectedItem="{Binding SelectedThreat}">
+
+            <DataGrid.Columns >
+                <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" CanUserReorder="False" IsReadOnly="True" />
+                <DataGridTextColumn Header="Наименование УБИ" Binding="{Binding Path=Name}" CanUserReorder="False"/>
+                <DataGridTextColumn Header="Описание" Binding="{Binding Path=Description}" CanUserReorder="False"/>
+                <DataGridTextColumn Header="Источник угрозы" Binding="{Binding Path=ThreatSource}" CanUserReorder="False"/>
+                <DataGridTextColumn Header="Объект воздействия" Binding="{Binding Path=ThreatObject}" CanUserReorder="False"/>
+                <DataGridCheckBoxColumn Header="Нарушение конфиденциальности" Binding="{Binding Path=PrivacyViolation}" CanUserReorder="False"/>
+                <DataGridCheckBoxColumn Header="Нарушение целостности" Binding="{Binding Path=IntegrityBreach}" CanUserReorder="False"/>
+                <DataGridCheckBoxColumn Header="Нарушение доступности" Binding="{Binding Path=AccessViolation}" CanUserReorder="False"/>
+                <DataGridTextColumn Header="Дата включения угрозы в БнД УБИ" Binding="{Binding Path=AddDate, StringFormat=\{0:dd.MM.yyyy\}}" CanUserReorder="False"/>
+                <DataGridTextColumn Header="Дата последнего изменения данных" Binding="{Binding Path=ChangeDate, StringFormat=\{0:dd.MM.yyyy\}}" CanUserReorder="False"/>
+            </DataGrid.Columns>
 
         </DataGrid>
         <Button x:Name="Add_btn" Content="Добавить запись" HorizontalAlignment="Left" Margin="37,0,0,21" VerticalAlignment="Bottom" Height="38" Width="128" Click="Add_btn_Click"/>
         <Button x:Name="Delete_btn" Content="Удалить запись" HorizontalAlignment="Left" Margin="208,0,0,21" VerticalAlignment="Bottom" Height="38" Width="128"/>
-        <TextBox x:Name="RecordCount" HorizontalAlignment="Left" Margin="510,0,0,31" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Bottom" Width="120"/>
+        <Button Height="23" HorizontalAlignment="Left" Name="First_btn" VerticalAlignment="Bottom" Width="40" Content="&lt;&lt;" Opacity="0.75" Margin="501,0,0,29" Click="First_btn_Click"/>
+        <Button Height="23"  VerticalAlignment="Bottom" Name="Prev_Btn" Width="40" Opacity="0.75" Content="&lt;" Margin="559,0,0,29" Click="Prev_Btn_Click" HorizontalAlignment="Left"/>
+        <Label x:Name="Current_page" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Width="88" 
+               VerticalContentAlignment="Center" VerticalAlignment="Bottom" Margin="604,0,0,25"/>
+        <Button Height="23" HorizontalAlignment="Right" Name="Next_btn" VerticalAlignment="Bottom" Width="40" Content="&gt;" Opacity="0.75" Margin="0,0,200,29" Click="Next_btn_Click"/>
+        <Button Height="23" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="40" Name="Last_btn" Opacity="0.75" Content="&gt;&gt;" Margin="0,0,139,29" Click="Last_btn_Click"/>
+        <ComboBox x:Name="Number_of_records" VerticalAlignment="Bottom"  SelectedIndex="0" 
+                   Opacity="0.75" Margin="0,0,33,29" HorizontalAlignment="Right" Width="80" SelectionChanged="Number_of_records_SelectionChanged" >
+            <!--<TextBlock>15</TextBlock>
+            <TextBlock>25</TextBlock>
+            <TextBlock>50</TextBlock>
+            <TextBlock>Все</TextBlock>-->
+        </ComboBox>
 
     </Grid>
 </Window>
