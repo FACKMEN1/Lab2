@@ -14,9 +14,9 @@ namespace Lab2
 {
     internal class ExcelWorker : INotifyPropertyChanged
     {
-        private static string filePath = $"../../thrlist.xlsx";
         private static List<Threat> data = new List<Threat>();
 
+        private static string filePath = Directory.GetFiles(Directory.GetCurrentDirectory().ToString(), "thrlist.xlsx", SearchOption.AllDirectories)[0];
         /*private Threat selectedThreat;
         public Threat SelectedThreat
         {
@@ -33,7 +33,7 @@ namespace Lab2
         public event PropertyChangedEventHandler PropertyChanged;
 
         //Считывается количество строк в файле начиная с переданного индекса.
-        public static ObservableCollection<Threat> LoadFile(int count, int lastIndex) 
+        public ObservableCollection<Threat> LoadFile(int count, int lastIndex) 
         {
             ObservableCollection<Threat> list = new ObservableCollection<Threat>();
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
@@ -68,7 +68,7 @@ namespace Lab2
         }
 
         //Считывается весь файл.
-        public static ObservableCollection<Threat> LoadFile() 
+        public ObservableCollection<Threat> LoadFile() 
         {
             ObservableCollection<Threat> list = new ObservableCollection<Threat>();
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
@@ -103,17 +103,42 @@ namespace Lab2
 
         }
 
-        public static List<string> GetHeaders(ExcelWorksheet ws)
-        {
-            var list = new List<string>();
+        //public static List<string> GetHeaders(ExcelWorksheet ws)
+        //{
+        //    var list = new List<string>();
             
             
-            int row = 2;
-            int col = 1;
-            while (string.IsNullOrWhiteSpace(ws.Cells[row, col].Value?.ToString()) == false)
-                list.Add(ws.Cells[row, col++].Value.ToString());
+        //    int row = 2;
+        //    int col = 1;
+        //    while (string.IsNullOrWhiteSpace(ws.Cells[row, col].Value?.ToString()) == false)
+        //        list.Add(ws.Cells[row, col++].Value.ToString());
 
-            return list;
+        //    return list;
+        //}
+
+        //Сохранить изменения в файл (не тестировал)
+        public void Save(List<Threat> threats)
+        {
+            var package = new ExcelPackage(filePath);
+            var ws = package.Workbook.Worksheets[0];
+            int row = 3;
+            int col = 1;
+            //ws.Cells.Clear();
+            foreach (Threat threat in threats)
+            {
+                ws.Cells[row, col++].Value = threat.Id;
+                ws.Cells[row, col++].Value = threat.Name;
+                ws.Cells[row, col++].Value = threat.Description;
+                ws.Cells[row, col++].Value = threat.ThreatSource;
+                ws.Cells[row, col++].Value = threat.ThreatObject;
+                ws.Cells[row, col++].Value = threat.PrivacyViolation;
+                ws.Cells[row, col++].Value = threat.IntegrityBreach;
+                ws.Cells[row, col++].Value = threat.AccessViolation;
+                ws.Cells[row, col++].Value = threat.AddDate;
+                ws.Cells[row++, col++].Value = threat.ChangeDate;
+                col = 1;
+            }
+            
         }
 
         private void OnPropertyChanged([CallerMemberName] string prop = "")

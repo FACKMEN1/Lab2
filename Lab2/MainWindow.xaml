@@ -25,9 +25,9 @@
 
         </DataGrid>
         <Button x:Name="Add_btn" Content="Добавить запись" HorizontalAlignment="Left" Margin="37,0,0,21" VerticalAlignment="Bottom" Height="38" Width="128" Click="Add_btn_Click"/>
-        <Button x:Name="Delete_btn" Content="Удалить запись" HorizontalAlignment="Left" Margin="208,0,0,21" VerticalAlignment="Bottom" Height="38" Width="128"/>
-        <Button Height="23" HorizontalAlignment="Left" Name="First_btn" VerticalAlignment="Bottom" Width="40" Content="&lt;&lt;" Opacity="0.75" Margin="501,0,0,29" Click="First_btn_Click"/>
-        <Button Height="23"  VerticalAlignment="Bottom" Name="Prev_Btn" Width="40" Opacity="0.75" Content="&lt;" Margin="559,0,0,29" Click="Prev_Btn_Click" HorizontalAlignment="Left"/>
+        <Button x:Name="Delete_btn" Content="Удалить запись" HorizontalAlignment="Left" Margin="208,0,0,21" VerticalAlignment="Bottom" Height="38" Width="128" Click="Delete_btn_Click"/>
+        <Button Height="23" HorizontalAlignment="Left" Name="First_btn" VerticalAlignment="Bottom" Width="40" Content="&lt;&lt;" Opacity="0.75" Margin="501,0,0,29" Click="First_btn_Click" IsEnabled="False"/>
+        <Button Height="23"  VerticalAlignment="Bottom" Name="Prev_Btn" Width="40" Opacity="0.75" Content="&lt;" Margin="559,0,0,29" Click="Prev_Btn_Click" HorizontalAlignment="Left" IsEnabled="False"/>
         <Label x:Name="Current_page" HorizontalContentAlignment="Center" HorizontalAlignment="Left" Height="30" Width="88" 
                VerticalContentAlignment="Center" VerticalAlignment="Bottom" Margin="604,0,0,25"/>
         <Button Height="23" HorizontalAlignment="Right" Name="Next_btn" VerticalAlignment="Bottom" Width="40" Content="&gt;" Opacity="0.75" Margin="0,0,200,29" Click="Next_btn_Click"/>
@@ -39,6 +39,7 @@
             <TextBlock>50</TextBlock>
             <TextBlock>Все</TextBlock>-->
         </ComboBox>
+        <Button Content="Сохранить" HorizontalAlignment="Left" Margin="368,0,0,20" VerticalAlignment="Bottom" Height="39" Width="100" Click="Button_Click"/>
 
     </Grid>
 </Window>
