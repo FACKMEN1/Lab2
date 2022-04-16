@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Lab2"
         mc:Ignorable="d"
-        Title="Why we still here" Height="465" Width="937" WindowStartupLocation="CenterScreen">
+        Title="Why we still here" Height="507" Width="1019" WindowStartupLocation="CenterScreen">
     <Grid>
-        <DataGrid x:Name="ExcelData" SelectionChanged="DataGrid_SelectionChanged" Margin="0,0,0,94" AutoGenerateColumns="False"
-                  ItemsSource="{Binding Threats}" SelectedItem="{Binding SelectedThreat}">
+        <DataGrid x:Name="ExcelData" SelectionChanged="DataGrid_SelectionChanged" Margin="0,0,0,137" AutoGenerateColumns="False"
+                  ItemsSource="{Binding Path=Threats}" SelectedItem="{Binding Path=SelectedThreat}" CellEditEnding="CellEditEnding">
 
             <DataGrid.Columns >
-                <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" CanUserReorder="False" IsReadOnly="True" />
+                <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" CanUserReorder="False" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Наименование УБИ" Binding="{Binding Path=Name}" CanUserReorder="False"/>
                 <DataGridTextColumn Header="Описание" Binding="{Binding Path=Description}" CanUserReorder="False"/>
                 <DataGridTextColumn Header="Источник угрозы" Binding="{Binding Path=ThreatSource}" CanUserReorder="False"/>
@@ -40,6 +40,8 @@
             <TextBlock>Все</TextBlock>-->
         </ComboBox>
         <Button Content="Сохранить" HorizontalAlignment="Left" Margin="368,0,0,20" VerticalAlignment="Bottom" Height="39" Width="100" Click="Button_Click"/>
+        <RadioButton x:Name="AllChecked" Content="Вся информация" HorizontalAlignment="Left" Margin="59,0,0,93" VerticalAlignment="Bottom" Checked="AllChecked_Checked" IsChecked="True" />
+        <RadioButton x:Name="ShortChecked" Content="Сокращенная" HorizontalAlignment="Left" Margin="208,0,0,93" VerticalAlignment="Bottom" Checked="ShortChecked_Checked" />
 
     </Grid>
 </Window>

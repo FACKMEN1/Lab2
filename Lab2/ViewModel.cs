@@ -11,10 +11,18 @@ using System.Windows.Controls;
 
 namespace Lab2
 {
-    internal class ViewModel : INotifyPropertyChanged
+    internal class ViewModel : INotifyPropertyChanged, IPagination
     {
+        private int numberOfRecPerPage = 15;
         public ObservableCollection<Threat> Threats { get; set; }
-        private Threat[] originalThreats;
+        public int ItemsPerPage { get; set; }
+
+        private List<Threat> newThreats = new List<Threat>();
+        private List<Threat> removeThreats = new List<Threat>();
+        private List<Threat> changeThreats = new List<Threat>();
+        public List<List<Threat>> changeList = new List<List<Threat>>();
+
+        private List<Threat> originalThreats;
         public event PropertyChangedEventHandler PropertyChanged;
         private Threat selectedThreat;
         private ExcelWorker excelWorker;
@@ -29,18 +37,38 @@ namespace Lab2
         }
 
 
+
         public ViewModel()
         {
             excelWorker = new ExcelWorker();
            
+            
+            //ShortThreats = ToShort(Threats);
+            
+            
             Threats = excelWorker.LoadFile();
-            
-            
-            originalThreats = Threats.ToArray();
+            originalThreats = Threats.ToList<Threat>();
+            changeList.Add(newThreats);
+            changeList.Add(removeThreats);
+            changeList.Add(changeThreats);
         }
+
+        /*private List<Threat> ToShort(ObservableCollection<Threat> threats)
+        {
+            var shortList = new List<Threat>();
+            foreach (Threat threat in threats)
+            {
+                shortList.Add(threat);
+            }
+            return shortList;
+        }*/
 
         public void Remove()
         {
+            if (changeList[1].Contains(SelectedThreat))
+                changeList[1].Remove(SelectedThreat);
+            if (changeList[0].Contains(SelectedThreat))
+                changeList[0].Remove(SelectedThreat);
             if (SelectedThreat != null)
                 Threats.Remove(SelectedThreat);
         }
@@ -83,8 +111,29 @@ namespace Lab2
                     
                 }
             }*/
-            excelWorker.Save(Threats.ToList<Threat>());
 
+            excelWorker.Save(Threats.ToList<Threat>());           
+
+        }
+
+        public void UpdateNumberOfRec(int numberOfRecPerPage)
+        {
+            this.numberOfRecPerPage = numberOfRecPerPage;
+        }
+
+        public void EditThreat(Threat threat)
+        {
+            if (!originalThreats.Contains(threat))
+            {
+                if (!changeList[2].Contains(threat))
+                    changeList[2].Add(threat);
+                else
+                {
+                    var index = changeList[2].IndexOf(threat);
+                    changeList[2][index] = threat;
+                }
+                    
+            }
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -92,5 +141,32 @@ namespace Lab2
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+
+        public void NextPage(int page)
+        {
+            if (originalThreats.Count > (page * ItemsPerPage))
+            {
+                if (originalThreats.Skip(page * ItemsPerPage).Take(ItemsPerPage).Count() == 0)
+                {
+                    //Threats = originalThreats.Skip((page * ItemsPerPage) - page).Take(ItemsPerPage);
+                                       
+                }
+            }
+        }
+
+        public void PrevPage(int page)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LastPage()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void FirstPage()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

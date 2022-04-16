@@ -15,7 +15,7 @@ namespace Lab2
 
     internal class Threat : INotifyPropertyChanged
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string ThreatSource { get; set; }
@@ -27,7 +27,7 @@ namespace Lab2
 
         public DateTime ChangeDate { get; set; }
 
-        public Threat(int id, string name, string description, string threatSource, string threatObject, bool privacyViolation, bool integrityBreach,
+        public Threat(string id, string name, string description, string threatSource, string threatObject, bool privacyViolation, bool integrityBreach,
             bool accessViolation, string addDate, string changeDate)
         {
             Id = id;
@@ -42,7 +42,7 @@ namespace Lab2
             ChangeDate = DateTime.Parse(changeDate, new CultureInfo("ru-RU")).Date;
         }
 
-        public Threat(int id)
+        public Threat(string id)
         {
             Id = id;
         }
