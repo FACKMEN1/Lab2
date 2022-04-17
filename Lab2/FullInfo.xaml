@@ -1,0 +1,27 @@
+﻿<Window x:Class="Lab2.FullInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab2"
+        mc:Ignorable="d"
+        Title="FullInfo" Height="278" Width="1037">
+    <Grid>
+        <DataGrid x:Name="ExcelData" Margin="0,0,0,10" AutoGenerateColumns="False"
+                  ItemsSource="{Binding Path=Threats}">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" CanUserReorder="False" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Наименование УБИ" Binding="{Binding Path=Name}" CanUserReorder="False" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Описание" Binding="{Binding Path=Description}" CanUserReorder="False" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Источник угрозы" Binding="{Binding Path=ThreatSource}" CanUserReorder="False" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Объект воздействия" Binding="{Binding Path=ThreatObject}" CanUserReorder="False" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Нарушение конфиденциальности" Binding="{Binding Path=PrivacyViolation}" CanUserReorder="False" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Нарушение целостности" Binding="{Binding Path=IntegrityBreach}" CanUserReorder="False" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Нарушение доступности" Binding="{Binding Path=AccessViolation}" CanUserReorder="False" IsReadOnly="True"/>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+    </Grid>
+</Window>

@@ -1,0 +1,63 @@
+﻿<Window x:Class="Lab2.ChangeReport"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab2"
+        mc:Ignorable="d"
+        Title="Report" Height="541" Width="822">
+
+    <Grid x:Name="Based">
+
+        <Label x:Name="NewRecords" Content="Новые записи" Margin="354,8,354,0" Height="24" VerticalAlignment="Top" />
+
+        <ListView Background="LightGreen" x:Name="NewThreats" Margin="0,37,0,0" Height="128" VerticalAlignment="Top" ScrollViewer.CanContentScroll="True"
+                  ItemsSource="{Binding Path=NewThreats}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Path=Id}"/>
+                    <GridViewColumn Header="Наименование" DisplayMemberBinding="{Binding Path=Name}"/>
+                    <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Path=Description}"/>
+                    <GridViewColumn Header="Источник" DisplayMemberBinding="{Binding Path=ThreatSource}"/>
+                    <GridViewColumn Header="Объект воздействия" DisplayMemberBinding="{Binding Path=ThreatObject}"/>
+                    <GridViewColumn Header="Нарушение конфиденциальности" DisplayMemberBinding="{Binding Path=PrivacyViolation}"/>
+                    <GridViewColumn Header="Нарушение целостности" DisplayMemberBinding="{Binding Path=IntegrityBreach}"/>
+                    <GridViewColumn Header="Нарушение доступности" DisplayMemberBinding="{Binding Path=AccessViolation}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label x:Name="RemoveRecords" Content="Удаленные записи" Margin="343,170,343,0" Height="24" VerticalAlignment="Top" />
+        <ListView Background="LightCoral" x:Name="RemoveThreats" Margin="0,201,0,0" ScrollViewer.CanContentScroll="True" Height="124" VerticalAlignment="Top" 
+                  ItemsSource="{Binding Path=RemoveThreats}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Path=Id}"/>
+                    <GridViewColumn Header="Наименование" DisplayMemberBinding="{Binding Path=Name}"/>
+                    <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Path=Description}"/>
+                    <GridViewColumn Header="Источник" DisplayMemberBinding="{Binding Path=ThreatSource}"/>
+                    <GridViewColumn Header="Объект воздействия" DisplayMemberBinding="{Binding Path=ThreatObject}"/>
+                    <GridViewColumn Header="Нарушение конфиденциальности" DisplayMemberBinding="{Binding Path=PrivacyViolation}"/>
+                    <GridViewColumn Header="Нарушение целостности" DisplayMemberBinding="{Binding Path=IntegrityBreach}"/>
+                    <GridViewColumn Header="Нарушение доступности" DisplayMemberBinding="{Binding Path=AccessViolation}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label x:Name="ChangeRecords" Content="Изменненые записи" Margin="343,340,326,0" Height="24" VerticalAlignment="Top" />
+        <ListView Background="LightYellow" x:Name="ChangeThreats" Margin="0,369,0,0" ScrollViewer.CanContentScroll="True" Height="124" VerticalAlignment="Top"
+                  ItemsSource="{Binding Path=ChangeThreats}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Path=Id}"/>
+                    <GridViewColumn Header="Наименование" DisplayMemberBinding="{Binding Path=Name}"/>
+                    <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Path=Description}"/>
+                    <GridViewColumn Header="Источник" DisplayMemberBinding="{Binding Path=ThreatSource}"/>
+                    <GridViewColumn Header="Объект воздействия" DisplayMemberBinding="{Binding Path=ThreatObject}"/>
+                    <GridViewColumn Header="Нарушение конфиденциальности" DisplayMemberBinding="{Binding Path=PrivacyViolation}"/>
+                    <GridViewColumn Header="Нарушение целостности" DisplayMemberBinding="{Binding Path=IntegrityBreach}"/>
+                    <GridViewColumn Header="Нарушение доступности" DisplayMemberBinding="{Binding Path=AccessViolation}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+    </Grid>
+</Window>

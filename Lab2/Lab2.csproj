@@ -69,11 +69,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ChangeWindowViewModel.cs" />
-    <Compile Include="IPagination.cs" />
+    <Compile Include="ChangeReport.xaml.cs">
+      <DependentUpon>ChangeReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeReportViewModel.cs" />
+    <Compile Include="FullInfo.xaml.cs">
+      <DependentUpon>FullInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ShortViewModel.cs" />
     <Compile Include="ShortThreat.cs" />
-    <Compile Include="ViewModel.cs" />
+    <Compile Include="FullInfoViewModel.cs" />
+    <Page Include="ChangeReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FullInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
